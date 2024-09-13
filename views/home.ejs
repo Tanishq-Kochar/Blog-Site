@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .carousel{
+            position: relative;
+            height: 500px;
+            width: 100%;
+            background-color: #f0f0f0;
+            border: 1px solid red;
+            background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20191009/pngtree-geometric-abstract-background-with-blogs-image_318758.jpg');
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }   
+        .card{
+            width: 30%;
+            height: 30%;
+            background-color: #444444;
+            color: #00d1cd;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+     
+        
+    </style>
+
+</head>
+<body>
+    <%- include('./partials/navbar'); %>
+    <section class="carousel">
+        <div class="card text-center" style="background-color: #444444; color: #00d1cd;">
+            <div class="card-header">
+              Welcome
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">DivDiscoveryDairy</h5>
+              <p class="card-text">Navigating the World, One Post at a Time</p>
+              <a href="/post/new" class="btn btn-primary">Start Posting</a>
+            </div>
+          </div>
+    </section>
+    <section id="posts-list" class="row">
+        <% if (posts.length > 0) { %>
+          <% posts.forEach(post => { %>
+            <div class="col-md-4 mb-4">
+              <div class="card shadow-sm border-dark">
+                <% if (post.imageUrl) { %>
+                  <img src="<%- post.imageUrl %>" class="card-img-top" alt="<%- post.title %>">
+                <% } %>
+                <div class="card-body">
+                  <h5 class="card-title"><%- post.title %></h5>
+                  <p class="card-text"><%- post.content.slice(0, 20) %>...</p>
+                  <p><small class="text-muted">By: <%- post.author %></small></p>
+                  <a href="/post/read/<%- post.id %>" class="btn btn-primary">Read More</a>
+                </div>
+              </div>
+            </div>
+          <% }); %>
+        <% } else { %>
+          <p class="text-center">No posts available.</p>
+        <% } %>
+      </section>
+    <%- include('./partials/contact'); %>
+
+</body>
+</html>

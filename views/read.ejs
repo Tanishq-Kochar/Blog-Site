@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .outer-div {
+        position: relative;
+        top: 0;
+        background-color: #90d6ff;
+        width: 100%;
+        height: 600px;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .inner-div {
+        width: 90%;
+        height: 90%;
+        background-color: #444444;
+        color: #00d1cd;
+        border-radius: 50px;
+        display: flex;
+      }
+      .inner-inner-div{
+        width: 95%;
+        height: 85%;
+        position: relative;
+        left: 20px;
+        top: 10px;
+        /* border: 5px solid red; */
+      }
+      .button-div{
+        position: absolute;
+        top: 510px;
+        height: 15%;
+        width: 95%;
+        display: flex;
+        justify-content: space-around;
+      }
+    </style>
+  </head>
+  <body>
+    <%- include('./partials/navbar'); %>
+    <div class="outer-div">
+      <div class="inner-div">
+        <div class="inner-inner-div">
+          <h1><%- post.title %></h1>
+          <img src="<%- post.imageUrl%>" alt="" />
+
+          <p><%- post.content%></p>
+
+          <h3>By: <%- post.author%></h3>
+        </div>
+        <div class="button-div">
+            <a href="/post/edit/<%- post.id%>">
+                <button class="btn btn-primary">Edit</button>
+            </a>
+            <a href="/post/delete/<%- post.id%>">
+                <button class="btn btn-danger">Delete</button>
+            </a>
+        </div>
+      </div>
+    </div>
+    <%- include('./partials/contact'); %>
+
+  </body>
+</html>
