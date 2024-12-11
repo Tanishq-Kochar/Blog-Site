@@ -20,6 +20,9 @@ module.exports.postNew = async (req, res, next) => {
       res.redirect("/");
     } catch (err) {
       next(err);
+      // const {data} = err;
+      // console.log(data);
+      // alert(data.msg);
     }
   };
   
@@ -46,7 +49,7 @@ module.exports.getReadPage = async (req, res, next) => {
   };
 
   module.exports.postEdit = async (req, res, next) => {
-    const { title, id, author, content } = req.body;
+    const { title, id, author, content,imageUrl  } = req.body;
     try {
     //   console.log(id);
       let p = await Post.findById(id);
@@ -54,6 +57,7 @@ module.exports.getReadPage = async (req, res, next) => {
       p.title = title;
       p.author = author;
       p.content = content;
+      p.imageUrl = imageUrl;
       await p.save();
       res.redirect("/");
     } catch (err) {
